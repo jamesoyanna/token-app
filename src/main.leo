@@ -125,4 +125,17 @@ program token.aleo {
         Mapping::set(account, sender, current_amount - amount);
     }
 
+    transition new_transfer_all_private (sender: token, receiver: address) ->(token, token)  {
+    let balance: token = token{
+        owner: sender.owner,
+        amount: 0u64,
+    };
+    
+    let transfered: token = token{
+        owner: receiver,
+        amount: sender.amount,
+    };
+    return (balance , transfered );
+    }
+
 }
